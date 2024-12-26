@@ -7,6 +7,13 @@ on:
         description: 'Name of the application (e.g., frontend, backend)'
         required: true
         type: string
+    secrets:
+      DOCKER_HUB_USERNAME:
+        description: 'Docker Hub Username'
+        required: true
+      DOCKER_HUB_ACCESS_TOKEN:
+        description: 'Docker Hub Access Token'
+        required: true
 
 jobs:
   docker-build-push:
