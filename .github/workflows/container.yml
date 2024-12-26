@@ -33,3 +33,4 @@ jobs:
       #     IMAGE_TAG=${{ github.sha }}
       #     docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ inputs.application_name }}:$IMAGE_TAG
       #     echo "Pushed Docker image with tag: $IMAGE_TAG"
+
