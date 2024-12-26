@@ -22,15 +22,14 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      # - name: Build Docker Image
-      #   run: |
-      #     IMAGE_TAG=${{ github.sha }}
-      #     docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/${{ inputs.application_name }}:$IMAGE_TAG .
-      #     echo "Built Docker image with tag: $IMAGE_TAG"
-
-      # - name: Push Docker Image
-      #   run: |
-      #     IMAGE_TAG=${{ github.sha }}
-      #     docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ inputs.application_name }}:$IMAGE_TAG
-      #     echo "Pushed Docker image with tag: $IMAGE_TAG"
-
+      - name: Build Docker Image
+        run: |
+          IMAGE_TAG=${{ github.sha }}  # Using the commit SHA as the image tag
+          echo "Building Docker image for application: ${{ inputs.application_name }} with tag: $IMAGE_TAG"
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/${{ inputs.application_name }}:$IMAGE_TAG .
+        
+      - name: Push Docker Image
+        run: |
+          IMAGE_TAG=${{ github.sha }}
+          echo "Pushing Docker image for application: ${{ inputs.application_name }} with tag: $IMAGE_TAG"
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ inputs.application_name }}:$IMAGE_TAG
